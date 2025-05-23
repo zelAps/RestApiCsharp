@@ -1,0 +1,19 @@
+## Build results
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+TestResults/
+
+## Rider/JetBrains
+.idea/
+
+## Docker
+**/Dockerfile
+**/docker-compose.override.yml
+
+## VSCode
+.vscode/
