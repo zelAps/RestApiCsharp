@@ -1,0 +1,24 @@
+stages:
+  - test
+
+api-tests:
+  stage: test
+  image: docker:24
+  services:
+    - docker:24-dind
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+    COMPOSE_PROFILES: ci
+    DOCKER_BUILDKIT: 1  # Включаем BuildKit для ускорения сборки
+  script:
+    - docker compose --profile ci down -v --remove-orphans
+    - docker compose --profile ci build --no-cache
+    - docker compose --profile ci up --abort-on-container-exit tests
+  artifacts:
+    when: always
+    paths:
+      - test-results/
+      - playwright-report/
+    reports:
+      junit: test-results/*.trx
+  retry: 1

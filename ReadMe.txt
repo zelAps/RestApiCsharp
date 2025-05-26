@@ -19,3 +19,15 @@ docker run -d -p 5000:80 --name bookapi-container bookapi
 Find and kill port process:
 sudo lsof -i tcp:5000
 sudo kill -9 PID
+
+
+## How to run
+
+```bash
+# local
+dotnet run --project src/BookApi.csproj --urls "http://localhost"
+dotnet test tests/BookApi.Tests.Playwright
+
+# docker / CI
+docker compose up --build --abort-on-container-exit
+
