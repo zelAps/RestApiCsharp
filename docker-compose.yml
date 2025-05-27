@@ -1,8 +1,30 @@
-version: '3.8'
-
 services:
-  bookapi:
-    build: .
-    ports:
-      - "6000:80"
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/health || exit 1"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+    networks: [app_network]
 
+  tests:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: tests
+    depends_on:
+      api:
+        condition: service_healthy
+    profiles: ["ci"]
+    volumes:
+      - ./test-results:/app/test-results
+    networks: [app_network]
+
+networks:
+  app_network:
+    driver: bridge

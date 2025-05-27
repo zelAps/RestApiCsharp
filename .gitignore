@@ -1,19 +1,25 @@
-## Build results
-bin/
-obj/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-.vs/
-TestResults/
 
-## Rider/JetBrains
+out/
+*.user
+*.lock.json
+
+**/bin/
+**/obj/
+**/playwright-report/
+**/test-results/
+
+# Playwright + npm
+**/playwright/.cache/
+**/Playwright/.cache/
+node_modules/
+tests/bin/
+
+# VScode, Rider, ReSharper, etc.
+.vs/
 .idea/
 
-## Docker
-**/Dockerfile
-**/docker-compose.override.yml
+# git и CI
+.git/
+.gitignore
+.github/
 
-## VSCode
-.vscode/
