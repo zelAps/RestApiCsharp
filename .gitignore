@@ -23,7 +23,3 @@ tests/bin/
 .gitignore
 .github/
 
-# Docker-файлы, compose, ZIP-архивы, скриншоты
-docker/
-*.zip
-*.tgz

@@ -9,7 +9,7 @@ api-tests:
   variables:
     DOCKER_TLS_CERTDIR: ""
     COMPOSE_PROFILES: ci
-    DOCKER_BUILDKIT: 1  # Включаем BuildKit для ускорения сборки
+    DOCKER_BUILDKIT: 1
   script:
     - docker compose --profile ci down -v --remove-orphans
     - docker compose --profile ci build --no-cache
